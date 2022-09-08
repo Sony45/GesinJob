@@ -1,0 +1,77 @@
+<ion-content>
+  <div class="div-content">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+      <ion-icon (click)="onGoBack()" color="dark" name="chevron-back-outline"></ion-icon>
+      </ion-buttons>
+    </ion-toolbar>
+    <img src="../../../assets/imgs/logo.svg" alt="website logo" class="logo">
+    <h3 class="register">Registro</h3>
+    <!-- form to register -->
+    <form [formGroup]="userForm" (ngSubmit)="onRegister()">
+      <ion-item class="mar-top">
+        <ion-input type="text" required placeholder="¿Cuál es tu nombre?" formControlName="name"
+                   (ionChange)="checkName($event.detail.value)"></ion-input>
+      </ion-item>
+      <ion-text *ngIf="error.name" color="danger" class="ion-text-center"> {{ error.name }}</ion-text><br>
+      
+      <ion-item class="mar-top">
+        <ion-input type="email" required (ionChange)="checkEmail($event.detail.value)" placeholder="¿Cuál es su correo electronico?" formControlName="email"></ion-input>
+       </ion-item>
+       <ion-text *ngIf="error.email" color="danger" class="ion-text-center"> {{ error.email }}</ion-text>
+       <br>
+
+      <ion-item class="mar-top">
+        <ion-input type="password" (ionChange)="checkPassword($event.detail.value)" required placeholder="Escribe una contraseña" formControlName="password"></ion-input>
+      </ion-item>
+      <ion-text *ngIf="error.password" color="danger" class="ion-text-center"> {{ error.password }}</ion-text>
+        <br>
+      <ion-item class="mar-top">
+        <ion-input type="tel" (ionChange)="checkPhone($event.detail.value)" placeholder="Número de teléfono" formControlName="phone"></ion-input>
+      </ion-item>
+      <ion-text *ngIf="error.phone" color="danger" class="ion-text-center"> {{ error.phone }}</ion-text>
+      <br>
+      <!-- <p align="center" class="mar-top">
+        <ion-label for="file">Agregar una foto de perfil
+        </ion-label><br>
+        <input type="file" id="file" placeholder="choisir" value="" (change)="handleFileInput($event.target.files)">
+      <ion-text *ngIf="imgAdded" color="secondary"  class="ion-text-center"> Foto añadida! </ion-text>
+      <ion-spinner *ngIf="loading" class="ion-text-center" name="dots"></ion-spinner>
+    </p><br> --><br>
+
+    <!-- BUTTON VALIDATION -->
+    <button type="submit" class="mar-top"  shap="round" style="background: rgb(249,44,85);
+            background: #3880ff; display: flex; margin: 0 auto;
+            margin-bottom:20px; height: 40px; width: 170px; text-align: center; color: white;
+            font-size: 19px; justify-content: center; padding-top: 10px; border-radius: 20px;"
+      [disabled]="userForm.invalid">
+      Registrarme
+    </button>
+    </form>
+    
+    <!-- Register Google 
+     <p class="google">
+       O registrate con
+     </p>
+     <a (click)="onGoogle()" class="logo-google">
+      <img src="../../../assets/imgs/google.png" alt="google logo" class="google-logo">
+    </a><br> -->
+
+     <!-- login -->
+     <p class="login">
+       ¿Ya tienes una cuenta? <a (click)="onLogin()">Inicia sesion</a>
+     </p><br>
+
+     <!-- visitor 
+     <a (click)="onVisitor()" class="visitor">
+       Ingresar como visitante a la comunidad >
+     </a><br> -->
+
+    <!-- footer with terms -->
+    <ion-footer>
+      <p (click)="terminos()" class="terms">
+        Al continuar, acepta nuestros términos y condiciones.
+       </p>
+    </ion-footer>
+  </div>
+</ion-content>

@@ -1,0 +1,32 @@
+<ion-content>
+  <div class="div-content">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button color="dark"></ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
+    <img src="../../../assets/imgs/logo.png" alt="website logo" class="logo">
+    <h3 class="register">Confirma tu información</h3>
+    <!-- form to register -->
+    <form [formGroup]="userForm" (ngSubmit)="onRegister()">
+      <ion-item class="mar-top">
+        <ion-label position="floating">¿Cuál es tu nombre?</ion-label>
+        <ion-input type="text" [value]="user.displayName" required formControlName="name"
+                   (ionChange)="checkName($event.detail.value)"></ion-input>
+      </ion-item>
+      <ion-text *ngIf="error.name" color="danger" class="ion-text-center"> {{ error.name }}</ion-text><br>
+      
+      <ion-item class="mar-top">
+        <ion-label position="floating">¿Cual es su correo electronico?</ion-label>
+        <ion-input type="email" [value]="user.email" required  (ionChange)="checkEmail($event.detail.value)" formControlName="email"></ion-input>
+       </ion-item>
+       <ion-text *ngIf="error.email" color="danger" class="ion-text-center"> {{ error.email }}</ion-text>
+      <br><br>
+
+    <!-- BUTTON VALIDATION -->
+    <button type="submit" class="mar-top bt-confirm"  shap="round">
+      Confirma tu información
+    </button>
+    </form>
+  </div>
+</ion-content>

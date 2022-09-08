@@ -1,0 +1,32 @@
+ion-content{
+    --background: rgb(12, 12, 12);
+}
+
+.container {
+    height: 100%;
+    position: relative;
+  }
+
+.text-center{
+    text-align: center;
+    text-shadow: 1px 1px 5px black;
+}
+
+.div-text{
+    margin: 0 auto;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    position: relative;
+    z-index: 1;
+    text-shadow: 1px 1px 5px black;
+}
+
+.vertical-center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }

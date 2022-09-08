@@ -1,0 +1,56 @@
+ion-content{
+    --background: #fff cover;
+} 
+ion-header{
+    --background: #fff cover;
+} 
+ion-footer{
+    --background:#fff cover;
+}
+.div-content{
+    max-width: 500px;
+    margin: 0 auto;
+    .text-content{
+        padding: 20px;
+        padding-bottom: 0;
+    }
+}
+.file-label{
+    text-align: center;
+    align-content: center;
+}
+
+.img-add{
+    height: auto;
+    width: 100%;
+    border-bottom: 1px solid grey;
+}
+.text-add{
+    color: rgba(0, 0, 0, 0.8)
+}
+
+.cam-plus{
+    height: 80px;
+    width: 80px;
+    margin: 0 auto;
+    display: flex;
+}
+
+.img-text{
+    text-align: center;
+    margin-top: 0;
+    padding-left: 7px;
+}
+
+.img-second{
+    max-height: 150px;
+    width: auto;
+    display: flex;
+    margin: 0 auto;
+    border: 1px solid grey;
+}
+
+.close{
+    text-shadow: 2px 1px 5px black;
+    background-color: black;
+}

@@ -1,0 +1,93 @@
+.profil-photo{
+    width: 100px;
+    height: 100px;
+    display: flex;
+    margin: 0 auto;
+    margin-top: 20px;
+    border-radius: 50%;
+}
+
+.cover-photo{
+    width: 100%;
+    max-height: 100px;
+}
+
+.user-name{
+    text-align: center;
+}
+
+.user-bio{
+    max-width: 450px;
+    padding: 20px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.buttons{
+    max-width: 450px;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+button{
+    display: flex;
+    height: 45px;
+    width: 123px;
+    color: white;
+    font-size: 16px;
+    border-radius: 10px;
+    background: #3880ff;
+    margin: 0 auto;
+    padding: 15px;
+}
+
+.bt-second{
+    padding-left: 9px;
+}
+
+.bt-edition{
+    height: 45px;
+    width: 110px;
+    color: white;
+    font-size: 16px;
+    border-radius: 10px;
+    background: #3880ff;
+    display: flex;
+    padding-top: 15px;
+    padding-left: 14px;
+    margin: 0 auto;
+}
+
+@media (max-width: 400px) {
+    .buttons{
+        justify-content: center;
+    }
+
+    button{
+        height: 37px;
+        width: 100px;
+        font-size: 12px;
+        margin: 0 auto;
+        display: flex;
+        padding: 13px;
+    }
+
+    .bt-edition{
+        height: 37px;
+        width: 100px;
+        color: white;
+        font-size: 12px;
+        border-radius: 10px;
+        background: #bb1033;
+        display: flex;
+        padding-top: 12px;
+        padding-left: 10px;
+        margin: 0 auto;
+    }
+    .bt-else{
+        padding-left: 26px;
+    }
+    .bt-follow{
+        padding-left: 30px;
+    }
+}

@@ -1,0 +1,37 @@
+ion-content{
+    --background: #fff cover;
+} 
+
+.logo{
+    height: 60px;
+    display: flex;
+    margin: 0 auto;
+}
+
+.register{
+    margin: 0;
+    text-align: center;
+    font-size: 18px;
+    padding-top: 14px;
+}
+
+form{
+    padding: 25px;
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+.bt-confirm{
+    background: rgb(249,44,85);
+    background: linear-gradient(0deg, rgba(249,44,85,1) 0%, rgba(237,78,15,1) 100%);
+    display: flex;
+    margin: 0 auto;
+    height: 50px;
+    width: 250px;
+    text-align: center;
+    color: white;
+    font-size: 19px;
+    justify-content: center;
+    padding-top: 16px;
+    border-radius: 10px;
+}

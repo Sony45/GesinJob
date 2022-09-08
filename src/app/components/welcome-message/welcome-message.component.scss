@@ -1,0 +1,28 @@
+.content{
+  background:#3880ff;
+  padding-top: 10px;
+  height: 100%;
+  width: 100%;
+}
+.text{
+    margin: 0 auto;
+    max-width: 450px;
+    text-align: center;
+    font-size: 25px;
+    margin-top: 20%;
+    color: white;
+    .apos{
+        margin: 0;
+        margin-left: 60px;
+        font-size: 80px;
+        font-weight: bold;
+        text-align: left;
+    }
+}
+
+
+@media (min-width: 900px) {
+  .text{
+    margin-top: 10%;
+  }
+}

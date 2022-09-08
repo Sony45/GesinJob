@@ -1,0 +1,22 @@
+@import '../../app.component';
+ion-content{
+    --background: #fff cover;
+} 
+ion-header{
+    --background: #fff cover;
+} 
+
+.div-content{
+    max-width: 500px;
+    margin: 0 auto;
+}
+.div-comment{
+    padding-top: 10px;
+    padding-left: 50px;
+}
+
+.foot-img{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}

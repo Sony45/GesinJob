@@ -1,0 +1,13 @@
+<ion-content>
+ <div class="div-content">
+  <p class="close" *ngIf="snip.postRestrict">
+    <ion-icon size="large" color="light" (click)="onClose()" name="close-circle-outline"></ion-icon>
+  </p> 
+  <h4 class="entete">Lo sentimos!</h4>
+   <p class="message">Necesitas crear una cuenta para contribuir en la comunidad </p>
+   <br><br><br><br><br><br><br><br><br><br>
+   <button class="bt-down" (click)="onRegister()">
+     Unirse
+   </button>
+ </div>
+</ion-content>

@@ -1,0 +1,58 @@
+<!-- posts search -->
+<!-- <ng-container *ngIf="posts">
+  <div class="post-card" *ngFor="let post of posts; index as i;">
+    <div class="head-card" (click)="onShowProfile(post.uid)">
+      <img [src]="post.photoURL ? post.photoURL : '../../../assets/imgs/user.png'" alt="" class="user-photo">
+      <div class="head-text">
+       <p class="user-name">{{ post.displayName | titlecase }}</p>
+      </div>
+    </div>
+    <div *ngIf="post.content" class="text-card">
+     <span *ngIf="post.longText"> {{  getShortText(post.content) }}
+       <ion-icon  *ngIf="checkLengthText(post.content)" (click)=" onChangeLong(i)" color="primary" name="chevron-down-outline"></ion-icon>
+     </span>
+     <span *ngIf="!post.longText">{{ post.content }}
+       <ion-icon *ngIf="checkLengthText(post.content)" (click)="onChangeLong(i)" color="primary" name="chevron-up-outline"></ion-icon>
+     </span> 
+    </div>
+    <ng-container *ngIf="post.medias.media1">
+       <div class="image-card" *ngIf="!post.medias.media2 && !post.medias.media3 && !post.medias.media4 && !post.medias.media5" (click)="onShowPicture(post.medias.media1)">
+         <img src="{{ post.medias.media1 }}" alt="" class="post-img">
+       </div>
+   </ng-container>
+   <ion-slides pager="true" [options]="slideOpts" *ngIf="post.medias.media2 || post.medias.media3 || post.medias.media4 || post.medias.media5" >
+     <ion-slide *ngIf="post.medias.media1"  (click)="onShowPicture(post.medias.media1)">
+      <img src="{{ post.medias.media1 }}" alt="" class="post-img">
+     </ion-slide>
+     <ion-slide *ngIf="post.medias.media2"  (click)="onShowPicture(post.medias.media2)">
+      <img src="{{ post.medias.media2 }}" alt="" class="post-img">
+     </ion-slide>
+     <ion-slide *ngIf="post.medias.media3"  (click)="onShowPicture(post.medias.media3)">
+      <img src="{{ post.medias.media3 }}" alt="" class="post-img">
+     </ion-slide>
+     <ion-slide *ngIf="post.medias.media4"  (click)="onShowPicture(post.medias.media4)">
+      <img src="{{ post.medias.media4 }}" alt="" class="post-img">
+     </ion-slide>
+     <ion-slide *ngIf="post.medias.media5"  (click)="onShowPicture(post.medias.media5)">
+      <img src="{{ post.medias.media5 }}" alt="" class="post-img">
+     </ion-slide>
+   </ion-slides>
+    <div class="icons-card">
+      <div class="comment-icon" (click)="onShow(i)"><ion-icon size="large" (click)="onShow(i)" name="chatbubbles-sharp"></ion-icon><span class="comment-text">{{ onGetLength(post.comments) }}</span></div>
+      <div class="like-icon" *ngIf="!checkLike(i)"><ion-icon (click)="onAddLike(i)" size="large" name="heart-outline"></ion-icon><span class="like-text">{{ onGetLength(post.likes) }}</span></div>
+      <div class="like-icon" *ngIf="checkLike(i)"><ion-icon size="large" color="danger" (click)="onRemoveLike(i)" name="heart"></ion-icon><span class="like-text">{{ onGetLength(post.likes) }}</span></div>
+      <div class="suite-icon" ><ion-icon size="large"  (click)="onShow(i)" name="chevron-down-sharp"></ion-icon></div>
+    </div>
+  </div>
+</ng-container> -->
+<!-- <p style="text-align: center;" *ngIf="error.posts"> {{ error.posts }} </p> -->
+<!-- user search -->
+<ng-container *ngIf="users">
+  <!-- <div class="list-notif" *ngFor="let user of users" (click)="onChat(user.uid)">
+    <img [src]="user.photoURL ? user.photoURL : '../../assets/imgs/user.png'" alt="" class="user-photo">
+    <div class="list-text">
+      <p class="list-user-name">{{ user.displayName }}</p>
+    </div>
+  </div> -->
+</ng-container>
+<!-- <p style="text-align: center;" *ngIf="error.users"> {{ error.users }} </p> -->

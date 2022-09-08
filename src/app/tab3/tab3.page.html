@@ -1,0 +1,65 @@
+<ion-header *ngIf="!restrict">
+  <ion-toolbar>
+    <ion-buttons slot="start" color="dark">
+      <ion-button (click)="onGoBack()">
+        <ion-icon name="chevron-back-outline"></ion-icon> Salir
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center"></ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="primary" (click)="onAdd()">
+         Publicar
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="!restrict" [fullscreen]="true">
+   <div *ngIf="!error" class="div-content">
+    <div class="text-content">
+      <ion-input *ngIf="errors" class="ion-text-center" color="danger">{{ errors }}</ion-input>
+       <ion-item>
+         <ion-label>Departamentos</ion-label>
+         <ion-select  multiple="true" (ionChange)="onCategory($event.detail.value)"  okText="Ok"  cancelText="Anular" placeholder="Seleccione una categoría">
+           <ion-select-option *ngFor="let cat of categories" [value]="cat.id">{{ cat.name }}</ion-select-option>
+         </ion-select>
+       </ion-item>
+       <ion-textarea name="contenido" rows="12" cols="20" placeholder="Comparte una plaza laboral" (ionChange)="onContent($event.detail.value)"></ion-textarea>  
+     </div>
+     <img *ngIf="post.medias.media1" [src]="post.medias.media1" alt="" class="img-add">
+     <ion-row *ngIf="post.medias.media2 || post.medias.media3 || post.medias.media4 || post.medias.media5">
+      <p class="close"> x <ion-icon name="close-circle" color="light"></ion-icon> </p>
+      <ion-col size="4"  *ngIf="post.medias.media2">
+         <img [src]="post.medias.media2" alt="" class="img-second">
+        </ion-col>
+        <ion-col size="4"  *ngIf="post.medias.media3">
+          <img [src]="post.medias.media3" alt="" class="img-second">
+         </ion-col>
+         <ion-col size="4"  *ngIf="post.medias.media4">
+          <img [src]="post.medias.media4" alt="" class="img-second">
+         </ion-col>
+         <ion-col size="4"  *ngIf="post.medias.media5">
+          <img [src]="post.medias.media2" alt="" class="img-second">
+         </ion-col>
+     </ion-row>
+    </div>
+</ion-content>
+
+
+<ion-footer *ngIf="!restrict">
+  <!-- <input type="file"  (change)="handleFileInput($event.target.files)" accept="image/x-png,image/gif,image/jpeg" id="actual-btn" style="display: none;"/> -->
+  <p (click)="handleFileInput()" class="file-label"><img src="../../assets/imgs/camera-plus.png" style="position: relative; height: 50px; width: 100%; max-width: 50px; cursor: pointer;" alt="" class="cam-plus"></p>
+  <p  (click)="handleFileInput()" class="img-text">o carga tu imagen</p>
+</ion-footer>
+
+<ion-content *ngIf="restrict">
+  <app-restrict></app-restrict>  
+</ion-content>
+<!-- 
+<ion-content>
+  <ion-button (click)="compressFile()" expand="block" fill="clear" shape="round">
+    upload img
+  </ion-button>
+  <img *ngIf="initImg" [src]="initImg" alt="">
+  <img *ngIf="afterImg"[src]="afterImg" alt="">
+</ion-content> -->

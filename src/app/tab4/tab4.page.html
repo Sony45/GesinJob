@@ -1,0 +1,40 @@
+<ion-header  *ngIf="!restrict">
+  <ion-toolbar>
+    <ion-buttons slot="start" color="dark">
+      <ion-icon (click)="onGoBack()" name="chevron-back-outline"></ion-icon>
+    </ion-buttons>
+    <ion-title class="ion-text-center"></ion-title>
+    <ion-buttons slot="end">
+      <ion-label>Mensajes &nbsp; &nbsp; &nbsp;</ion-label>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar cancelButtonText=""(ionCancel)="onLive($event)" (ionBlur)="onLive($event)" showCancelButton="never" placeholder="" inputmode="text" type="text" (ionChange)="onSearchChange($event.detail.value)" [debounce]="250" showCancelButton="always"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ng-container *ngIf="!restrict">
+    <div class="div-content" *ngIf="!error">
+      <div class="list-notif" *ngFor="let user of users" (click)="onChat(user.uid)">
+        <img [src]="user.photoURL ? user.photoURL : '../../assets/imgs/user.png'" alt="" class="user-photo">
+        <div class="list-text">
+          <p class="list-user-name">{{ user.displayName }}</p>
+          <p class="list-content" *ngIf="!search">
+            {{ msgs[user.uid].content }}
+          </p>
+        </div>
+        <p class="list-time" *ngIf="!search"> {{ onGetTime(msgs[user.uid].date) }} ></p>
+      </div>
+    </div>
+  
+    <div class="div-content" *ngIf="error">
+      <p style="text-align: center; font-size: 16px; margin-top: 15%;">{{ error }}</p>
+    </div>
+ </ng-container>
+  <app-restrict *ngIf="restrict"></app-restrict>
+
+</ion-content>

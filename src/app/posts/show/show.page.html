@@ -1,0 +1,129 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button>
+         <img src="../../assets/imgs/logo.png" alt="" class="head-logo">
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-left">GesinJob</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="div-content" *ngIf="!loading">
+    <div class="post-card" *ngIf="!erreur">
+      <div class="head-card" (click)="onShowProfile(post.uid)">
+        <img  (click)="onShowProfile(post.uid)" [src]="post.photoURL ? post.photoURL : '../../../assets/imgs/user.png'" alt="" class="user-photo">
+        <div  (click)="onShowProfile(post.uid)" class="head-text">
+          <p class="user-name">{{ post.displayName }}</p>
+        </div>
+      </div>
+      <div class="text-card">
+        {{ post.content }}
+       </div>
+    <ng-container *ngIf="post.medias.media1">
+        <div class="image-card" *ngIf="!post.medias.media2 && !post.medias.media3 && !post.medias.media4 && !post.medias.media5" (click)="onShowPicture(post.medias.media1)">
+          <img src="{{ post.medias.media1 }}" alt="" class="post-img">
+        </div>
+    </ng-container>
+    <ion-slides pager="true" [options]="slideOpts" *ngIf="post.medias.media2 || post.medias.media3 || post.medias.media4 || post.medias.media5" >
+      <ion-slide *ngIf="post.medias.media1"  (click)="onShowPicture(post.medias.media1)">
+       <img src="{{ post.medias.media1 }}" alt="" class="post-img">
+      </ion-slide>
+      <ion-slide *ngIf="post.medias.media2"  (click)="onShowPicture(post.medias.media2)">
+       <img src="{{ post.medias.media2 }}" alt="" class="post-img">
+      </ion-slide>
+      <ion-slide *ngIf="post.medias.media3"  (click)="onShowPicture(post.medias.media3)">
+       <img src="{{ post.medias.media3 }}" alt="" class="post-img">
+      </ion-slide>
+      <ion-slide *ngIf="post.medias.media4"  (click)="onShowPicture(post.medias.media4)">
+       <img src="{{ post.medias.media4 }}" alt="" class="post-img">
+      </ion-slide>
+      <ion-slide *ngIf="post.medias.media5"  (click)="onShowPicture(post.medias.media5)">
+       <img src="{{ post.medias.media5 }}" alt="" class="post-img">
+      </ion-slide>
+    </ion-slides>
+      <div class="icons-card">
+        <div class="comment-icon" ><ion-icon size="large" name="chatbubbles-sharp"></ion-icon><span class="comment-text">{{ onGetLength(post.comments) }}</span></div>
+        <div class="like-icon" *ngIf="!checkLike()"><ion-icon (click)="onAddLike()" size="large" name="heart-outline"></ion-icon><span class="like-text">{{ onGetLength(post.likes) }}</span></div>
+        <div class="like-icon" *ngIf="checkLike()"><ion-icon size="large" color="danger" (click)="onRemoveLike()" name="heart"></ion-icon><span class="like-text">{{ onGetLength(post.likes) }}</span></div>
+       </div>
+    </div>
+    <div class="div-comment" *ngIf="!erreur">
+      <ng-container *ngIf="onGetLength(post.comments) > 0">
+          <div class="post-card-comment" *ngFor="let comment of post.comments; index as i">
+            <div class="head-card">
+              <img  (click)="onShowProfile(comment.uid)" [src]="us.users[comment.uid].photoURL ? us.users[comment.uid].photoURL : '../../../assets/imgs/user.png'" alt="" class="user-photo-comment">
+              <div  (click)="onShowProfile(comment.uid)" class="head-text">
+                <p class="user-name-comment">{{ us.users[comment.uid].displayName }}</p>
+              </div>
+              <div class="comment-icon-comment" (click)="onShowSub(i)"><ion-icon name="chatbubbles-sharp"></ion-icon>
+                <span *ngIf="onGetLength(comment.comments) > 0" class="comment-text">{{ onGetLength(comment.comments) }}</span>
+              </div>
+            </div>
+            <div *ngIf="comment.content" class="text-card-comment">
+              {{ comment.content }}
+             </div>
+              <!-- Sub comments -->
+            <div class="div-sub-comment" *ngIf="subComState[i]">
+              <ng-container *ngIf="onGetLength(comment.comments) > 0">
+                  <div class="post-card-comment" *ngFor="let com of comment.comments; index as y">
+                    <div  (click)="onShowProfile(com.uid)" class="head-card">
+                      <img  (click)="onShowProfile(com.uid)" [src]="us.users[com.uid].photoURL ? us.users[com.uid].photoURL : '../../../assets/imgs/user.png'" alt="" class="user-photo-comment">
+                      <div  (click)="onShowProfile(com.uid)" class="head-text">
+                        <p class="user-name-comment">{{ us.users[com.uid].displayName }}</p>
+                      </div>
+                      <!-- <div class="comment-icon-comment"><ion-icon size="large" name="chatbubbles-sharp"></ion-icon>
+                        <span *ngIf="onGetLength(com.comments) > 0" class="comment-text">{{ onGetLength(com.comments) }}</span>
+                      </div> -->
+                    </div>
+                    <div *ngIf="comment.content" class="text-card-comment">
+                      {{ com.content }}
+                    </div>
+                  </div>
+              </ng-container>
+              <div class="post-card-comment">
+                <ion-row>
+                  <ion-col size="2">
+                     <img  [src]="user.photoURL" alt="" class="foot-img">
+                  </ion-col>
+                  <ion-col size="8">
+                    <ion-input inputmode="text" [value]="subComment" autofocus="true" (keyup.enter)="onAddSub(i)" (ionChange)="onCheckTextSub($event.detail.value)"
+                    color="dark" placeholder="responder al comentario..."></ion-input>
+                  </ion-col>
+                  <ion-col size="2">
+                    <ion-icon *ngIf="!subComment" name="paper-plane" size="large" color="primary"></ion-icon>
+                    <ion-icon *ngIf="subComment" (click)="onAddSub(i)" name="paper-plane" size="large" color="primary"></ion-icon>
+                  </ion-col>
+                </ion-row>
+              </div>
+            </div>
+          </div>
+         
+      </ng-container>
+      <ng-container *ngIf="onGetLength(post.comments) == 0" >
+        <div class="post-card-comment">
+          <p style="text-align: center; font-size: 14px;">Ningún comentario</p>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+</ion-content>
+<ion-footer class="ion-no-border" *ngIf="!loading && !erreur">
+  <div class="div-content">
+    <ion-row>
+      <ion-col size="2">
+         <img  [src]="user.photoURL" alt="" class="foot-img">
+      </ion-col>
+      <ion-col size="8">
+        <ion-input inputmode="text" autofocus="true" [value]="comment" (ionChange)="onCheckText($event.detail.value)"
+                               color="dark" placeholder="Agregar un comentario"></ion-input>
+      </ion-col>
+      <ion-col size="2">
+        <ion-icon *ngIf="!validation" name="paper-plane" size="large" color="primary"></ion-icon>
+        <ion-icon *ngIf="validation" (click)="onAddComment()" name="paper-plane" size="large" color="primary"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-footer>

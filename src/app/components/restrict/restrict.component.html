@@ -1,0 +1,19 @@
+<div class="all-strict">
+  <div class="content">
+    <p class="close" *ngIf="snip.postRestrict">
+      <ion-icon color="light" (click)="onClose()" name="close-circle-outline"></ion-icon>
+    </p>
+    <h4 class="entete">Lo sentimos!</h4>
+    <p class="message">Necesitas crear una cuenta para acceder</p>
+    <br><br>
+
+    <div  class="div-img">
+      <img class="img" src="../../../assets/imgs/restrict.jpg"/>
+    
+    </div>
+    <br><br><br>
+    <button class="bt-down" (click)="onRegister()">
+      Unirme
+    </button>
+  </div>
+</div>

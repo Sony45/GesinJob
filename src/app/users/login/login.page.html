@@ -1,0 +1,60 @@
+<ion-content>
+  <div class="div-content">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-icon (click)="onGoBack()" color="dark" name="chevron-back-outline"></ion-icon>
+      </ion-buttons>
+    </ion-toolbar>
+    <img src="../../../assets/imgs/logo.svg" alt="website logo" class="logo">
+    <h3 class="register">Inicia sesión</h3><br><br><br><br>
+    <!-- form to register -->
+    <form [formGroup]="userForm" (ngSubmit)="onLogin()">
+      <ion-text *ngIf="error.main" color="danger" class="ion-text-center"> {{ error.main }}</ion-text>
+      <ion-item class="mar-top">
+        <ion-input type="email" required (ionChange)="checkEmail($event.detail.value)" placeholder="Ingresa tu correo electronico" formControlName="email"></ion-input>
+       </ion-item>
+       <ion-text *ngIf="error.email" color="danger" class="ion-text-center"> {{ error.email }}</ion-text>
+       <br>
+
+      <ion-item class="mar-top">
+        <ion-input type="password" (ionChange)="checkPassword($event.detail.value)" required placeholder="Ingresa tu contraseña" formControlName="password"></ion-input>
+      </ion-item>
+      <ion-text *ngIf="error.password" color="danger" class="ion-text-center"> {{ error.password }}</ion-text>
+      <br>
+      <br>
+
+    <!-- BUTTON VALIDATION -->
+    <button type="submit" class="mar-top"  shap="round" style="background: rgb(249,44,85);
+            background:#3880ff; display: flex; margin: 0 auto;
+            height: 40px; width: 170px; text-align: center; color: white;
+            font-size: 19px; justify-content: center; padding-top: 10px; border-radius: 20px;"
+      [disabled]="userForm.invalid">
+      Ingresar
+    </button>
+    </form>
+    <!-- visitor -->
+    <a (click)="onForget()" class="forget">
+      ¿Has olvidado tu contraseña?
+    </a><br><br>  
+    
+    <!-- Register Google 
+     <p class="google">
+       O registrate con
+     </p>
+     <a (click)="onGoogle()" class="logo-google">
+      <img src="../../../assets/imgs/google.png" alt="google logo" class="google-logo">
+    </a><br> -->
+
+     <!-- login -->
+     <p class="login">
+       ¿Aún no tienes una cuenta? <a (click)="onRegister()">Registrate</a>
+     </p><br>
+
+    <!-- footer with terms -->
+    <ion-footer>
+      <p (click)="terminos()" class="terms">
+        Al continuar, acepta nuestros términos y condiciones.
+       </p>
+    </ion-footer>
+  </div>
+</ion-content>

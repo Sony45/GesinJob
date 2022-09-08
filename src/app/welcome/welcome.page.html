@@ -1,0 +1,16 @@
+<ion-content>
+  <p class="ion-text-center">
+    <ion-icon (click)="onClose()" size="large" color="light" name="close-circle-outline"></ion-icon>
+  </p>
+ 
+  <div class="text" *ngIf="!error">
+     <p class="apos">"</p>
+     <p style="font-size: 14px; text-align: left; margin-left: 50px;">Aprendamos Juntos!</p>
+     {{ message }}
+  </div>
+  <div class="text" *ngIf="error">
+    <p class="apos">"</p>
+    {{ error }}
+ </div>
+
+</ion-content>

@@ -1,0 +1,46 @@
+ion-content{
+    --background: #fff cover;
+} 
+ion-header{
+    --background: #fff cover;
+} 
+
+.div-content{
+    margin: 0 auto;
+    max-width: 500px;
+    padding: 15px;
+    .list-notif{
+        display: flex;
+        width: 100%;
+        margin-bottom: 10px;
+        .user-photo{
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+        }
+
+        .list-text{
+            padding-left: 15px;
+            p{
+                margin: 0;
+            }
+
+            .list-user-name{
+                font-size: 17px;
+                font-weight: 600;
+            }
+            .list-content{
+                margin: 0;
+                font-size: 15px;
+            }
+        }
+
+        .list-img-post{
+            height: 100%;
+            width: 50px;
+            margin-left: auto;
+            order: 2;
+        }
+        
+    }
+}

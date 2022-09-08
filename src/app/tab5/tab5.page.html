@@ -1,0 +1,6 @@
+<ion-content>
+ <div *ngIf="!restrict" class="div-content">
+  <app-profil uid="{{ uid }}"></app-profil>
+ </div>
+ <app-restrict *ngIf="restrict"></app-restrict>
+</ion-content>

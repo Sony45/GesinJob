@@ -1,0 +1,134 @@
+<ion-header [translucent]="true"  *ngIf="!snip.welcome">
+  <ion-toolbar *ngIf="!search">
+    <ion-buttons slot="start">
+      <ion-button>
+         <img src="../../assets/imgs/logo.png" alt="" class="head-logo">
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-left">GesinJob</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="search = true">
+        <ion-icon color="dark"  name="search"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar *ngIf="search"> <br>
+    <ion-searchbar placeholder="Plazas, Usuarios ..." (ionCancel)="onCancel()"
+    (ionChange)="onSearchChange($event.detail.value)" cancelButtonText="Anular" showCancelButton="always"></ion-searchbar>
+  </ion-toolbar>
+  </ion-header>
+
+<ion-content [fullscreen]="true" *ngIf="!snip.welcome && !searching">
+  <div *ngIf="showBtn" style="display: none;">
+     {{ presentAlertConfirm() }}
+  </div>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <!-- <div style="position: relative; height: 120px; width: 100%; max-width: 500px;
+            margin-top: 5px;">
+        <img [src]="imageFond" alt="" class="head-msg">
+        <h2 class="name-head">El secreto de vivir es dar<br><b>Contribuciòn</b></h2>
+  </div> -->
+  <!-- <button (click)="installPwa()">
+    Install
+  </button> -->
+  <div class="div-in" *ngIf="!error">
+    <div style="background-image: url({{ imageFond }}); background-position: center;
+            background-size: 100% 100%; background-size: contain; background-size: cover;
+            position: relative; height: 120px; width: 100%; max-width: 500px;
+            margin-top: 5px; margin-bottom: 20px;">
+        <div class="layer">
+        </div>
+        <h2 class="name-category">¿En que departamento<br><b>buscas empleo?</b></h2>
+    </div>
+    <a class="day-msg" (click)="onDayMsg()">Un minuto para crecer</a>
+
+    <div *ngFor="let cat of categories"  
+    style="background-image: url({{ cat.image }}); background-position: center;  position: relative;
+            height: 150px; width: 100%; max-width: 500px;
+            margin-top: 35px;"
+         (click)="onShow(cat.id)">
+        <div class="layer">
+        </div>
+        <h2 class="name-category">{{ cat.name }}</h2>
+    </div>
+
+  </div>
+
+  <div class="div-in" *ngIf="error">
+      <p class="error">
+        Error al cargar, actualice la página.
+      </p>
+  </div>
+</ion-content>
+
+<ion-content  *ngIf="snip.welcome && !searching">
+  <app-welcome-message></app-welcome-message>
+</ion-content>
+
+<ion-content *ngIf="searching">
+    <!-- posts search -->
+<ng-container *ngIf="posts">
+  <p style="text-align: center;">Publicaciones</p>
+  <div class="post-card" *ngFor="let post of posts; index as i;">
+    <div class="head-card" (click)="onShowProfile(post.uid)">
+      <img [src]="post.photoURL ? post.photoURL : '../../../assets/imgs/user.png'" alt="" class="user-photo">
+      <div class="head-text">
+       <p class="user-name">{{ post.displayName | titlecase }}</p>
+      </div>
+    </div>
+    <div *ngIf="post.content" class="text-card">
+     <span *ngIf="post.longText"> {{  getShortText(post.content) }}
+       <ion-icon  *ngIf="checkLengthText(post.content)" (click)=" onChangeLong(i)" color="primary" name="chevron-down-outline"></ion-icon>
+     </span>
+     <span *ngIf="!post.longText">{{ post.content }}
+       <ion-icon *ngIf="checkLengthText(post.content)" (click)="onChangeLong(i)" color="primary" name="chevron-up-outline"></ion-icon>
+     </span> 
+    </div>
+    <ng-container *ngIf="post.medias.media1">
+       <div class="image-card" *ngIf="!post.medias.media2 && !post.medias.media3 && !post.medias.media4 && !post.medias.media5" (click)="onShowPicture(post.medias.media1)">
+         <img src="{{ post.medias.media1 }}" alt="" class="post-img">
+       </div>
+   </ng-container>
+   <ion-slides pager="true" [options]="slideOpts" *ngIf="post.medias.media2 || post.medias.media3 || post.medias.media4 || post.medias.media5" >
+     <ion-slide *ngIf="post.medias.media1"  (click)="onShowPicture(post.medias.media1)">
+      <img src="{{ post.medias.media1 }}" alt="" class="post-img">
+     </ion-slide>
+     <ion-slide *ngIf="post.medias.media2"  (click)="onShowPicture(post.medias.media2)">
+      <img src="{{ post.medias.media2 }}" alt="" class="post-img">
+     </ion-slide>
+     <ion-slide *ngIf="post.medias.media3"  (click)="onShowPicture(post.medias.media3)">
+      <img src="{{ post.medias.media3 }}" alt="" class="post-img">
+     </ion-slide>
+     <ion-slide *ngIf="post.medias.media4"  (click)="onShowPicture(post.medias.media4)">
+      <img src="{{ post.medias.media4 }}" alt="" class="post-img">
+     </ion-slide>
+     <ion-slide *ngIf="post.medias.media5"  (click)="onShowPicture(post.medias.media5)">
+      <img src="{{ post.medias.media5 }}" alt="" class="post-img">
+     </ion-slide>
+   </ion-slides>
+    <div class="icons-card">
+      <div class="comment-icon" (click)="onShow(i)"><ion-icon size="large" (click)="onShowPost(i)" name="chatbubbles-sharp"></ion-icon><span class="comment-text">{{ onGetLength(post.comments) }}</span></div>
+      <div class="like-icon" *ngIf="!checkLike(i)"><ion-icon (click)="onAddLike(i)" size="large" name="heart-outline"></ion-icon><span class="like-text">{{ onGetLength(post.likes) }}</span></div>
+      <div class="like-icon" *ngIf="checkLike(i)"><ion-icon size="large" color="danger" (click)="onRemoveLike(i)" name="heart"></ion-icon><span class="like-text">{{ onGetLength(post.likes) }}</span></div>
+      <div class="suite-icon" ><ion-icon size="large"  (click)="onShowPost(i)" name="chevron-down-sharp"></ion-icon></div>
+    </div>
+  </div><br>
+</ng-container>
+<p style="text-align: center;" *ngIf="erreur.posts"> {{ erreur.posts }} </p>
+<!-- user search -->
+<ng-container *ngIf="users">
+  <p style="text-align: center;">Usuarios</p>
+  <div class="list-notif" *ngFor="let user of users" (click)="onShowProfile(user.uid)">
+    <img [src]="user.photoURL ? user.photoURL : '../../assets/imgs/user.png'" alt="" class="user-photo">
+    <div class="list-text">
+      <p class="list-user-name">{{ user.displayName | titlecase }}</p>
+    </div>
+  </div>
+</ng-container>
+ <p style="text-align: center;" *ngIf="erreur.users"> {{ erreur.users }} </p>
+</ion-content>
+<!-- <button (click)="installPwa()">
+  Install PWA
+</button> -->

@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" color="dark">
+      <ion-icon (click)="onGoBack()" name="chevron-back-outline"></ion-icon>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Editar Perfil</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="primary" (click)="onSave()">
+         Guardar
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="!loading  && !error.main">
+  <div class="div-content">
+    <div>
+      <img [src]="user.photoURL ? user.photoURL : '../../../../assets/imgs/user.png'" class="profil-photo" alt="">
+      <input type="file" accept="image/x-png,image/gif,image/jpeg" (change)="handleFileInput($event?.target?.files)" id="actual-btn" hidden/>
+      <label *ngIf="!uploading" for="actual-btn" class="file-label">Cambriar foto de perfil</label>
+      <label *ngIf="uploading" class="file-label"><ion-spinner color="primary" name="bubbles"></ion-spinner></label>
+    </div><br> <br>
+      <ion-item class="mar-top">
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input type="text" required [value]="user.displayName"
+                   (ionChange)="checkName($event.detail.value)"></ion-input>
+      </ion-item>
+      <ion-text *ngIf="error.name" color="danger" class="ion-text-center"> {{ error.name }}</ion-text><br>
+      <ion-item class="mar-top">
+        <ion-label position="floating">Biografia</ion-label>
+        <ion-textarea [value]="bio" (ionChange)="checkBio($event.detail.value)"></ion-textarea>
+       </ion-item>
+       <ion-text *ngIf="error.bio" color="danger" class="ion-text-center"> {{ error.bio }}</ion-text>
+       <br>
+      <ion-item class="mar-top">
+        <ion-label position="floating">Correo electronico</ion-label>
+        <ion-input type="email" required [value]="user.email" (ionChange)="checkEmail($event.detail.value)" ></ion-input>
+       </ion-item>
+       <ion-text *ngIf="error.email" color="danger" class="ion-text-center"> {{ error.email }}</ion-text>
+       <br>
+      <ion-item class="mar-top">
+        <ion-label position="floating">Nueva contraseña</ion-label>
+        <ion-input type="password" (ionChange)="checkPassword($event.detail.value)" required></ion-input>
+      </ion-item>
+      <ion-text *ngIf="error.password" color="danger" class="ion-text-center"> {{ error.password }}</ion-text>
+        <br>
+      <ion-item class="mar-top">
+        <ion-label position="floating">Numero de teléfono</ion-label>
+        <ion-input type="tel" [value]="user.phoneNumber" (ionChange)="checkPhone($event.detail.value)"></ion-input>
+      </ion-item>
+      <ion-text *ngIf="error.phone" color="danger" class="ion-text-center"> {{ error.phone }}</ion-text>
+      <br>
+  </div>
+
+</ion-content>
+<ion-content *ngIf="loading">
+  <p style="text-align: center; font-size: 25px; margin-top: 60px;">Cargando<ion-spinner name="dots"></ion-spinner></p>
+</ion-content>
+
+<ion-content *ngIf="!loading && error.main">
+  <p style="text-align: center; font-size: 25px; margin-top: 60px; color:brown"> {{ error.main }}</p>
+</ion-content>

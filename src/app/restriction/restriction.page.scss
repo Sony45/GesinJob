@@ -1,0 +1,60 @@
+ion-content{
+    --background: #fff url('../../assets/imgs/restrict.jpg') no-repeat center center / cover;
+}
+
+.div-content{
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+.entete{
+    color: white;
+    text-align: center;
+    font-size: 25px;
+}
+
+.message{
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 23px;
+    margin-top: 60%;
+}
+
+.bt-down{
+    background: #d44343;
+    height: 40px;
+    width: 213px;
+    color: white;
+    margin: auto;
+    display: flex;
+    text-align: center;
+    font-size: 28px;
+    padding-left: 70px;
+    padding-top: 5px;
+    border-radius: 9px;
+}
+
+
+@media (max-height: 650px) {
+
+    /* CSS ici */
+    .bt-down{
+        margin-top: -150px;
+    }
+
+}
+
+@media (max-height: 700px) {
+
+    /* CSS ici */
+    .bt-down{
+        margin-top: -150px;
+    }
+}
+
+.close{
+    position: absolute;
+    margin-top: 3px;
+    margin-left: 20px;
+}

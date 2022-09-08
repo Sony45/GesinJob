@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="primary"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="primary">Editer un post</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+      <ion-text *ngIf="error.content" color="danger" class="ion-text-center"> {{ error.content }}</ion-text>
+      <ion-item>
+        <ion-label position="floating">Contenu de post</ion-label>
+        <ion-textarea required="true" [value]="post.content" autofocus="true" (ionChange)="onCheckContent($event.target.value)"></ion-textarea>
+      </ion-item><br>
+      <img *ngIf="post.medias.media1" style="border-radius: 50%; display: flex; margin:  0 auto;"
+          [src]="post.medias.media1" />
+      <ion-button *ngIf="!loader.image" style="display: flex; margin:  0 auto;" (click)="onImage()">Changer le media</ion-button>
+      <ion-button *ngIf="loader.image" style="display: flex; margin:  0 auto;"><ion-spinner name="crescent"></ion-spinner></ion-button>
+
+      <ion-button expand="full" shap="round" color="primary" [disabled]="!validation"  (click)="onAddPost()" >
+        Modifier &nbsp; <ion-icon color="light" name="create"></ion-icon></ion-button>
+</ion-content>
+ 

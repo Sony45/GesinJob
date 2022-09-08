@@ -1,0 +1,29 @@
+ion-content{
+    --background: #fff cover;
+} 
+ion-header{
+    --background: #fff cover;
+} 
+
+.profil-photo{
+    width: 80px;
+    height: 80px;
+    display: flex;
+    margin: 0 auto;
+    margin-top: 10px;
+    border-radius: 50%;
+}
+
+.file-label{
+    text-align: center;
+    color: #3838c5;
+    font-size: 17px;
+    justify-content: center;
+    display: flex;
+    margin-top: 9px;
+}
+
+.div-content{
+    max-width: 450px;
+    margin: 0 auto;
+}

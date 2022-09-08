@@ -1,0 +1,88 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-button>
+           <img src="../../../assets/imgs/logo.png" alt="" class="head-logo">
+        </ion-button>
+      </ion-buttons>
+      <ion-title class="ion-text-left">GesinJob</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content padding class="contentBg" #content id="chat-parent">
+  <div class="div-content" *ngIf="!loader.page">
+    <ion-toolbar color="secondary" color="light">
+      <ion-buttons slot="start" color="dark">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <ion-buttons slot="start" color="medium">
+        <img [src]="instanceUser.photoURL ? instanceUser.photoURL : '../../../assets/imgs/user.png' " class="img-head"/>
+      </ion-buttons>
+      <ion-title color="dark">{{ instanceUser.displayName | titlecase }}</ion-title>
+    </ion-toolbar>
+    <div id="chat-container">
+      <div class="message-wrap" *ngIf="!erreur">
+        <div *ngFor="let msg of listMsg; index as i;" class="message">
+          <div class="message-left" *ngIf="msg.senderId == instanceUser.uid ">
+            <div class="msg-detail">
+              <div class="msg-content" *ngIf="msg.type == 'text'" >
+                <p class="line-breaker1 ">{{ msg.content }}</p>
+              </div>
+              <div *ngIf="msg.type == 'image'"   class="msg-content" style="padding: 1px; background: none;">
+                <img (click)="open(msg.content)"  [src]="msg.content" class="img-msg"  />
+              </div>
+            </div>
+          </div>
+          <div class="message-right" *ngIf="msg.senderId == currentUser.uid ">
+            <div class="msg-detail">
+              <div class="msg-info">
+              </div>
+              <div *ngIf="msg.type == 'text'"  class="msg-content">
+                <p class="line-breaker ">{{ msg.content }}</p>
+                <!-- <ion-icon *ngIf="!msg.read" name="checkmark-outline"></ion-icon>
+                <ion-icon  *ngIf="msg.read"  name="checkmark-done-outline"></ion-icon> -->
+              </div>
+              <div *ngIf="msg.type == 'image'"   class="msg-content" style="padding: 1px; background: none;">
+                <img (click)="open(msg.content)"  [src]="msg.content" class="img-msg"  />
+              </div>
+            </div>
+          </div>
+          <div>
+            <!-- display date / time -->
+            <!-- <p *ngIf="msg.date.date != listMsg[i-1].date.date">{{ msg.date.date }}</p>
+            <p>{{ msg.date.time }}</p> -->
+          </div>
+        </div>
+      </div>
+      <div *ngIf="erreur" style="display: flex; margin: 0 auto; top: 30%;">
+         <p align="center" class="text-error">{{ erreur }}</p>
+      </div>
+    </div>
+  </div> 
+</ion-content>
+
+<ion-footer>
+   <ion-toolbar>
+    <div class="containerFooter div-content">
+      <input type="file"  (change)="onSendIMG($event.target.files)" accept="image/x-png,image/gif,image/jpeg" id="actual-btn" hidden/>
+     <label  for="actual-btn" class="file-label">
+       <img src="../../../assets/imgs/camera-plus.png" alt="" class="cam-plus">
+      </label>
+  
+  
+      <div class="inputConatiner">
+        <ion-textarea name="contenido" rows="2" cols="40" class="placeholdertext inputMessage inputBg" type="text" placeholder="Escribe tu mensaje aqui ..." autofocus="true" [value]="messageText"
+         spellcheck="true" (ionChange)="onCheckMsg($event.target.value)" padding-start></ion-textarea>
+      </div>
+      <div class="send-button-parent">
+        <ion-button  class="sendBtn" [disabled]="loader.send" color="primary" (click)="onSendTEXT()">
+          <ion-icon *ngIf="!loader.send" class="sendBtn-icon" name="send-sharp" color="light"></ion-icon>
+          <ion-spinner *ngIf="loader.send" name="lines"></ion-spinner>
+        </ion-button>
+        <!-- <ion-button  class="sendBtn" [disabled]="loader.send" color="primary"`(click)="onSendTEXT()">
+          <ion-icon   *ngIf="!loader.send"class="sendBtn-icon" name="send" color="light"></ion-icon>
+          <ion-spinner *ngIf="loader.send" name="lines"></ion-spinner>
+        </ion-button> -->
+      </div>
+    </div>
+   </ion-toolbar>
+</ion-footer>

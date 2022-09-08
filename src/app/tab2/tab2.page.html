@@ -1,0 +1,52 @@
+<ion-header *ngIf="!restrict">
+  <ion-toolbar>
+    <ion-buttons slot="start" color="dark">
+      <ion-icon (click)="onGoBack()" name="chevron-back-outline"></ion-icon>
+    </ion-buttons>
+    <ion-title class="ion-text-center"></ion-title>
+    <ion-buttons slot="end">
+      <ion-label>Actividad</ion-label>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="!restrict">
+  <div class="div-content">
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+   <ng-container *ngIf="!error">
+    <div *ngFor="let notif of notifications">
+      <div  class="list-notif" *ngIf="notif.postId" (click)="onOpen(notif.postId)">
+        <img [src]="notif.photoURL ? notif.photoURL : '../../assets/imgs/user.png'" alt="" class="user-photo">
+        <div class="list-text">
+          <p class="list-user-name">{{ notif.displayName }}</p>
+          <p class="list-content">
+            {{ notif.content }}
+          </p>
+        </div>
+        <img *ngIf="notif.image" [src]="notif.image" alt="" class="list-img-post">
+      </div>
+      <div  class="list-notif" *ngIf="!notif.postId" (click)="onShowUser(notif.postUid)">
+        <img [src]="notif.photoURL ? notif.photoURL : '../../assets/imgs/user.png'" alt="" class="user-photo">
+        <div class="list-text">
+          <p class="list-user-name">{{ notif.displayName }}</p>
+          <p class="list-content">
+            {{ notif.content }}
+          </p>
+        </div>
+        <img *ngIf="notif.image" [src]="notif.image" alt="" class="list-img-post">
+      </div>
+    </div>
+   </ng-container>
+   <ng-container *ngIf="error">
+    <p style="text-align: center;" class="list-content">
+      {{ error }}
+    </p>
+   </ng-container>
+  </div>
+</ion-content>
+
+<ion-content *ngIf="restrict">
+  <app-restrict></app-restrict>
+</ion-content>

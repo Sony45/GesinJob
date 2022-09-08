@@ -1,0 +1,106 @@
+.head-card{
+    display: flex;
+    height: 41px;
+}
+
+.icons-card{
+    display: flex;
+    padding-top: 4px;
+}
+
+.user-photo{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+.link{
+    text-decoration: none;
+}
+.user-photo-comment{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}
+
+.user-name{
+    margin: 0;
+    padding-top: 10px;
+    padding-left: 10px;
+    font-weight: bold;
+    font-size: 19px;
+}
+
+.user-name-comment{
+    margin: 0;
+    padding-top: 7px;
+    padding-left: 10px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.text-card{
+    padding: 0 10px 5px 10px;
+    padding-top: 0;
+    text-align: justify;
+    font-size: 14px;
+    span{
+        font-size: 17px;
+        font-weight: 400;
+    }
+}
+.text-card-comment{
+    padding: 0;
+    text-align: justify;
+    font-size: 14px;
+}
+
+.post-img{
+    display: flex;
+    margin: 0 auto;
+    width: 100%;
+    height: auto;
+}
+
+.comment-icon, .like-icon, .suite-icon{
+    margin-right: 18px;
+    margin-left: 10px;
+}
+
+.comment-text, .like-text{
+    font-weight: 500;
+    font-size: 20px;
+    margin: 0;
+}
+
+.post-card{
+    // border-radius: 10px;
+    // box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+    margin-bottom: 15px;
+}
+
+.post-card-comment{
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.01);
+    box-shadow: 1px 0px 5px rgba(0, 0, 0, 0.01);
+}
+
+.head-logo{
+    height: 35px;
+}
+
+.save-icon{
+    margin-right: 15px;
+    margin-left: 2px;
+}
+
+.like-icon{
+    margin-left: 0;
+}
+
+.comment-icon-comment{
+    margin: 0 auto;
+    order: 2;
+    margin-right: 60px;
+}

@@ -1,0 +1,29 @@
+<ion-content>
+  <div class="div-content">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-icon (click)="onGoBack()" name="chevron-back-outline"></ion-icon>
+      </ion-buttons>
+    </ion-toolbar>
+    <img src="../../../assets/imgs/logo.png" alt="website logo" class="logo">
+    <h3 class="register">Recuperación de contraseña</h3><br><br>
+    <ion-card *ngIf="success" color="primary" class="ion-text-center">
+      <ion-card-content>
+         {{ success }}
+      </ion-card-content>
+    </ion-card>
+    <ion-item>
+      <ion-input type="email" placeholder="Introduce tu correo electrónico" pattern="email"  required (ionChange)="onCheckEmail($event.target.value)"></ion-input>
+    </ion-item>
+    <ion-text *ngIf="error" color="danger" class="ion-text-center"> {{ error }}</ion-text>
+       <br><br>
+       <!-- BUTTON VALIDATION -->
+    <button type="button" (click)="onRecove()" class="mar-top"  shap="round" style="background: rgb(249,44,85);
+    background:#3880ff; display: flex; margin: 0 auto;
+    height: 40px; width: 170px; text-align: center; color: white;
+    font-size: 19px; justify-content: center; padding-top: 10px; border-radius: 10px;"
+    [disabled]="!validation">
+    Recuperar
+    </button>
+</div>
+</ion-content>

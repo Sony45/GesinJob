@@ -1,0 +1,26 @@
+@import '../../app.component';
+ion-content{
+    --background: #fff cover;
+} 
+ion-header{
+    --background: #fff cover;
+} 
+ion-footer{
+    --background:#fff cover
+}
+.div-content{
+    max-width: 500px;
+    margin: 0 auto;
+    padding-top: 15px;
+}
+
+.error{
+    text-align: center;
+    margin: 0;
+    margin-top: 20%;
+    font-style: 20px;
+    font-weight: bold;
+    color: rgba(19, 18, 18, 0.7);
+}
+
+/*Card Post  */

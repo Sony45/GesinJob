@@ -1,0 +1,60 @@
+<ng-container *ngIf="!loader"> 
+<div class="cover-photo">
+  <!-- <img src="../../../../assets/imgs/profil-cover.jpg" class="cover-photo" alt=""> -->
+  &nbsp;
+</div>
+<div>
+  <img [src]="userShowing.photoURL ? userShowing.photoURL : '../../../../assets/imgs/user.png'" class="profil-photo" alt="">
+</div>
+<h3 class="user-name">{{ userShowing.displayName | titlecase }}</h3>
+<p class="user-bio" *ngIf="userShowing.bio">{{ userShowing.bio }}</p>
+<div *ngIf="uid != user.uid">
+  <ion-row>
+    <ion-col size="6">
+      <button *ngIf="!onCheckFollow()" class="bt-first bt-follow" style="background: rgb(249,44,85);
+      background:#3880ff; padding-left: 30px;" (click)="onFollow()">Seguir</button>
+      <button *ngIf="onCheckFollow()"  class="bt-first" style="background: rgb(249,44,85);
+      background:#3880ff; padding: 6px; padding-top: 12px; padding-left: 10px;" (click)="onUnFollow()">Dejar de seguir</button>
+    </ion-col>
+    <ion-col size="6">
+        <button class="bt-first bt-else"  style="background: rgb(249,44,85);
+        background:#3880ff; padding-left: 30px;" (click)="onChat(userShowing.uid)">Mensaje</button>
+    </ion-col>
+  </ion-row>
+</div>
+<div  *ngIf="uid == user.uid">
+   <ion-row>
+    <ion-col size="6">
+      <button class="bt-first" (click)="onEdit()" style="background: rgb(249,44,85);
+      background:#3880ff;">Editar Perfil</button>
+     </ion-col>
+     <ion-col size="6">
+      <button class="bt-second" (click)="onLogout()"  style="background: rgb(249,44,85);
+      background:#3880ff;">Desconectarse</button>
+     </ion-col>
+   </ion-row>
+</div>
+ <!-- <button *ngIf="uid == user.uid" (click)="onEdit()" class="bt-edition">Editar Perfil</button> -->
+<br>
+<ion-segment color="primary" (ionChange)="segmentChanged($event)" value="contribution">
+  <ion-segment-button value="contribution">
+    <ion-label>Publicaciones</ion-label>
+  </ion-segment-button>
+  <!-- <ion-segment-button value="comment">
+    <ion-label>Comentarios</ion-label>
+  </ion-segment-button> -->
+  <ion-segment-button value="librairy">
+    <ion-label>Guardados</ion-label>
+  </ion-segment-button>
+</ion-segment>
+
+<div *ngIf="segment == 'contribution'">
+  <app-post name="userPosts" uid="{{ uid }}"></app-post>
+</div>
+<!-- <div *ngIf="segment == 'comment'">
+  <app-post name="userComments" uid="{{ uid }}"></app-post>
+</div> -->
+<div *ngIf="segment == 'librairy'">
+  <app-post name="userLibrairy" uid="{{ uid }}"></app-post>
+</div>
+</ng-container>
